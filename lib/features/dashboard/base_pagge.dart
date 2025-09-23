@@ -72,6 +72,7 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color(0xff101828),
       // appBar:
       //     widget.navigationShell.currentIndex == 3
       //         ? null
@@ -105,13 +106,11 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
         currentIndex: widget.navigationShell.currentIndex,
         onTap: _goBranch,
         elevation: 3,
-
         unselectedItemColor: Pallets.grey35,
         selectedItemColor: Color(0xffE67002),
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        // backgroundColor
-        // : Pallets.whitecolor,
+        backgroundColor:Color(0xff101828),
         selectedLabelStyle: GoogleFonts.poppins(
           color: Pallets.mildBlue,
           fontSize: 12,
@@ -135,7 +134,7 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
               child:Icon(Iconsax.send),
             ),
             activeIcon: IgnorePointer(
-              child: Icon(Icons.send),
+              child: Icon(Iconsax.send),
             ),
           ),
           // BottomNavigationBarItem(

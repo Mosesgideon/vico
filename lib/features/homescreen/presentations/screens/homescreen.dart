@@ -13,28 +13,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List images = [
-    "assets/images/pngs/shop.jpg",
-    "assets/images/pngs/shop4.jpg",
-    "assets/images/pngs/shop5.jpg",
-    "assets/images/pngs/shopping.jpg",
-    "assets/images/pngs/shopper.jpg",
-  ];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff0f172a),
       appBar: CustomAppBar(
+        bgColor: Color(0xff0f172a),
         leading: CircleAvatar(),
-        tittle: TextView(text: "Vico Exchange",fontSize: 18,),
+        tittle: TextView(text: "Vico Exchange",fontSize: 18,color: Colors.white,fontWeight: FontWeight.w600,),
         actions: [
-
           Icon(Iconsax.moon),
           10.horizontalSpace,
           Icon(Iconsax.notification),
@@ -43,11 +36,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
         ],
       ),
-      body:Column(
-        children: [
-          Brandnew(),
+      body:Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Brandnew(),
+            20.verticalSpace,
 
-        ],
+
+          ],
+        ),
       )
     );
   }

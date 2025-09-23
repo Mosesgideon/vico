@@ -28,80 +28,18 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-  final user = injector.get<UserBloc>();
-  final editprofile = ProfileBloc(ProfileRepositoryImpl(NetworkService()));
-  final firstnaamecontroller = TextEditingController();
-  final lastnaamecontroller = TextEditingController();
-  final emailcontroller = TextEditingController();
-  final numbercontroller = TextEditingController();
-  final address1controller = TextEditingController();
-  String? selectedReason;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    final userData = user.appUser;
-    if (userData != null) {
-      if (nigeriaStates.contains(userData.state)) {
-        selectedReason = userData.state;
-      } else {
-        selectedReason = null;
-      }
-      selectedReason = userData.state ?? '';
-      firstnaamecontroller.text = userData.firstName ?? '';
-      lastnaamecontroller.text = userData.lastName ?? '';
-      emailcontroller.text = userData.email ?? '';
-      numbercontroller.text = userData.primaryPhone ?? '';
-      address1controller.text = userData.primaryAddress ?? '';
-    }
-    super.initState();
-  }
 
-  final List<String> nigeriaStates = [
-    "Abia",
-    "Adamawa",
-    "Akwa Ibom",
-    "Anambra",
-    "Bauchi",
-    "Bayelsa",
-    "Benue",
-    "Borno",
-    "Cross River",
-    "Delta",
-    "Ebonyi",
-    "Edo",
-    "Ekiti",
-    "Enugu",
-    "FCT - Abuja",
-    "Gombe",
-    "Imo",
-    "Jigawa",
-    "Kaduna",
-    "Kano",
-    "Katsina",
-    "Kebbi",
-    "Kogi",
-    "Kwara",
-    "Lagos",
-    "Nasarawa",
-    "Niger",
-    "Ogun",
-    "Ondo",
-    "Osun",
-    "Oyo",
-    "Plateau",
-    "Rivers",
-    "Sokoto",
-    "Taraba",
-    "Yobe",
-    "Zamfara",
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color(0xff101828),
+
       appBar: CustomAppBar(
+        fgColor: Colors.white,
+        bgColor:  Color(0xff101828),
         tittle: TextView(
-          text: "My Profile",
+          text: "My Profile",color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
@@ -116,7 +54,7 @@ class _MyProfileState extends State<MyProfile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextView(text: "Profile Information", fontSize: 18),
+                  TextView(text: "Profile Information",color: Colors.white, fontSize: 18),
                   InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
@@ -134,168 +72,71 @@ class _MyProfileState extends State<MyProfile> {
               ),
               10.verticalSpace,
               Divider(),
-              Container(
-                width: 1.sw,
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Pallets.grey95),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextView(text: "Full Name", fontSize: 11),
-                    5.verticalSpace,
-                    Container(
-                      width: 1.sw,
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Pallets.grey90),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextView(text: user.appUser?.firstName ?? '',fontSize: 18,),
-                    ),
+              50.verticalSpace,
+              Center(child:CircleAvatar(radius: 55,),),
 
-                    5.verticalSpace,
-                    10.verticalSpace,
-                    TextView(text: "Last Name", fontSize: 11),
-                    5.verticalSpace,
-                    Container(
-                      width: 1.sw,
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Pallets.grey90),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextView(text: user.appUser?.lastName ?? '',fontSize: 18,),
-                    ),
-                    // FilledTextField(hint: '', controller: lastnaamecontroller,enabled: false),
-                    10.verticalSpace,
-                    TextView(text: "Email", fontSize: 11),
-                    5.verticalSpace,
-                    Container(
-                      width: 1.sw,
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Pallets.grey90),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextView(text: user.appUser?.email ?? '',fontSize: 18,),
-                    ),
-                    // FilledTextField(hint: '', controller: emailcontroller,enabled: false),
-                    10.verticalSpace,
-                    TextView(text: "Phone Number", fontSize: 11),
-                    5.verticalSpace,
-                    Container(
-                      width: 1.sw,
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Pallets.grey90),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextView(text: user.appUser?.primaryPhone ?? '',fontSize: 18,),
-                    ),
-                    // FilledTextField(hint: '', controller: numbercontroller,enabled: false),
-                    10.verticalSpace,
-                    Divider(),
-                    10.verticalSpace,
-                    TextView(text: "My Address", fontSize: 17),
-                    10.verticalSpace,
-                    TextView(text: "State"),
-                    5.verticalSpace,
-                Container(
-                  width: 1.sw,
-                  height: 50,
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Pallets.grey90),
-                    borderRadius: BorderRadius.circular(10),
+              30.verticalSpace,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Iconsax.user,color: Colors.grey,),
+                      10.horizontalSpace,
+                      TextView(text: "Name",color: Colors.grey,fontSize: 18,),
+                     
+                    ],
                   ),
-                  child: TextView(text: selectedReason??'',fontSize: 18,),
-                ),
-
-                    10.verticalSpace,
-                    TextView(text: "Address", fontSize: 11),
-                    5.verticalSpace,
-                    Container(
-                      width: 1.sw,
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Pallets.grey90),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextView(text: user.appUser?.primaryAddress ?? '',fontSize: 18,),
-                    ),
-
-                    // ),
-                    10.verticalSpace,
-
-                  ],
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:35),
+                    child: TextView(text: "Moses Gideon",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                  )
+                ],
               ),
               20.verticalSpace,
-              GestureDetector(
-                onTap: (){
-                  _logout(context);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: 200,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                      color: Colors.red
-                  ),
-                  child: TextView(
-                    text: "Delete Account",
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.email_outlined,color: Colors.grey,),
+                      10.horizontalSpace,
+                      TextView(text: "Email",color: Colors.grey,fontSize: 18,),
 
+                    ],
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:35),
+                    child: TextView(text: "mosesgideon072@gmail.com",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                  )
+                ],
               ),
               20.verticalSpace,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.email_outlined,color: Colors.grey,),
+                      10.horizontalSpace,
+                      TextView(text: "Phone Number",color: Colors.grey,fontSize: 18,),
+
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:35),
+                    child: TextView(text: "+234(0)7042973460",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                  )
+                ],
+              ),
+
             ],
           ),
         ),
       ),
     );
   }
-  void _logout(BuildContext context) async {
-    //to  logout
-    SessionManager().logOut();
-    CustomDialogs.showCustomDialog(
-        barrierDismissible: false,
-        InfoDialog(
-          footer: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: 0.horizontalSpace,
-          ),
-          tittle: "Deleting Account",
-          subtittle:
-          "You will be redirected to the login page in a few seconds",
-        ),
-        context);
-    Future.delayed(
-      const Duration(
-        seconds: 3,
-      ),
-          () {
-        context.goNamed(PageUrl.signin_screen);
-      },
-    );
-  }
+
 
 
 }
