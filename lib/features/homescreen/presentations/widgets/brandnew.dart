@@ -65,21 +65,31 @@ class _BrandnewState extends State<Brandnew> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
-                              alignment: Alignment.center,
-                              height: 40,
-                              width: 120,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),
-                              color: Colors.white),
-                              child: TextView(text: "Quick Trade",color: Colors.blue,fontSize: 14,fontWeight: FontWeight.w600,),
+                            InkWell(
+                              onTap: (){
+                                context.pushNamed(PageUrl.categories);
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: 40,
+                                width: 120,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),
+                                color: Colors.white),
+                                child: TextView(text: "Quick Trade",color: Colors.blue,fontSize: 14,fontWeight: FontWeight.w600,),
+                              ),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              height: 40,
-                              width: 120,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),
-                              color: Colors.lightBlueAccent.withOpacity(0.2)),
-                              child: TextView(text: "View Details",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w600,),
+                            InkWell(
+                              onTap: (){
+                                context.pushNamed(PageUrl.mycart);
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: 40,
+                                width: 120,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),
+                                color: Colors.lightBlueAccent.withOpacity(0.2)),
+                                child: TextView(text: "View Details",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w600,),
+                              ),
                             )
 
                           ],
