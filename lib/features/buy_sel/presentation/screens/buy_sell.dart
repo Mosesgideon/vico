@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vico/common/widgets/custom_appbar.dart';
 import 'package:vico/common/widgets/text_view.dart';
+import 'package:vico/features/buy_sel/presentation/screens/sell_screen.dart';
 
 class BuySell extends StatefulWidget {
   const BuySell({super.key});
@@ -66,7 +67,7 @@ class _BuySellState extends State<BuySell> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        CupertinoPageRoute(builder: (ctx) => BuySell()),
+                        CupertinoPageRoute(builder: (ctx) => SellScreen()),
                       );
                     },
                     child: Container(
