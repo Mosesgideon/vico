@@ -36,16 +36,7 @@ class _CustomButtonState extends State<CustomButton> {
       children: [
         Expanded(
             flex: widget.isExpanded! ? 1 : 0,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Color(0xffE67002),
-                  Color(0xffE67002),
-                  Color(0xff992002)
-                ]),
-                  borderRadius:
-                  widget.borderRadius ?? BorderRadius.circular(10)
-              ),
+
               child: ElevatedButton(
                 onPressed: widget.onPressed,
                 style: ElevatedButton.styleFrom(
@@ -60,12 +51,12 @@ class _CustomButtonState extends State<CustomButton> {
                       ? Theme.of(context).colorScheme.primary.withAlpha(-200)
                       : widget.bgColor!.withAlpha(-200),
                   backgroundColor:
-                      widget.bgColor ?? Colors.transparent,
+                      widget.bgColor ?? Color(0xfff18b01),
 
                 ),
                 child: widget.child,
               ),
-            )),
+            ),
       ],
     );
   }

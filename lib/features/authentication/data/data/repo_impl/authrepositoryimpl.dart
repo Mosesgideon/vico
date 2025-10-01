@@ -50,15 +50,6 @@ class AuthRepositoryImpl extends AuthRepository {
     return AuthSuccessResponse.fromJson(response.data);
   }
 
-  @override
-  Future<VerifySignUpOtpResponse> verify(VerifySignUpOtpPayload payload) async {
-    var response = await networkService.call(
-      UrlConfig.verifyotp,
-      RequestMethod.post,
-      data: payload.toJson(),
-    );
-    return  VerifySignUpOtpResponse.fromJson(response.data);
-  }
 
   @override
   Future<ForgotPasswordResponse> forgotpassword(

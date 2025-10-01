@@ -10,7 +10,6 @@ import '../../data/models/verify_signup_res.dart';
 abstract class AuthRepository{
   Future<AuthSuccessResponse>signin(String email,String password);
   Future<AuthSuccessResponse>signup(SignUpPayload payloaad);
-  Future<VerifySignUpOtpResponse>verify(VerifySignUpOtpPayload payload);
   Future<ForgotPasswordResponse>forgotpassword(ForgotPasswordPayload payload);
   Future<ResendOtpResponse>resendOtp(String email);
   Future<AuthSuccessResponse> authenticateWithGoogle();

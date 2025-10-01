@@ -9,7 +9,7 @@ class UserInitial extends UserState {
   List<Object?> get props => throw UnimplementedError();
 }
 class UserCachedState extends UserState {
-  final vicoUser user;
+  final VicoUser user;
 
    UserCachedState(this.user);
 

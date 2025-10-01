@@ -139,7 +139,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    TextView(text: "Add to cart",fontSize: 10,color: Colors.white,fontWeight: FontWeight.w600,),Icon(Icons.add_shopping_cart,size: 14,color: Colors.white,)
+                                    TextView(text: "Add to transactions",fontSize: 10,color: Colors.white,fontWeight: FontWeight.w600,),Icon(Icons.add_shopping_cart,size: 14,color: Colors.white,)
                                   ],
                                 ),),
                             ],

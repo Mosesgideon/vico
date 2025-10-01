@@ -58,16 +58,27 @@ class UrlConfig {
 
   static String getFlag(String path) =>
       '$FLAGS_BASE_URL${path.toUpperCase()}/shiny/64.png';
-  static const String signIn = 'https://api.vico.com/api/v1/users/login';
-  static const String signUp = 'https://api.vico.com/api/v1/users/signup';
-  static const String google = 'https://api.vico.com/api/v1/users/auth/google';
-  static const String logout = 'https://api.vico.com/api/v1/users/logout';
-  static const String verifyotp =
-      'https://api.vico.com/api/v1/users/verify_email';
+  static const String signIn = 'https://test.dayladexpo.com.ng/api/v1/users/login';
+  static const String signUp = 'https://test.dayladexpo.com.ng/api/v1/users/signup';
+  static const String google = 'https://test.dayladexpo.com.ng/api/v1/users/auth/google';
+  static const String logout = 'https://test.dayladexpo.com.ng/api/v1/users/logout';
+  static const String getdash =
+      'https://test.dayladexpo.com.ng/api/v1/stats/users';
+  static const String gettransactions =
+      'https://test.dayladexpo.com.ng/api/v1/transactions';
+  static const String giftcards =
+      'https://test.dayladexpo.com.ng/api/v1/giftcards';
+  static const String sellcards =
+      'https://test.dayladexpo.com.ng/api/v1/transactions';
+  static const String getbank =
+      'https://test.dayladexpo.com.ng/api/v1/bankAccounts';
+
+
+
   static const String forgotpassword =
-      'https://api.vico.com/api/v1/users/forgotPassword';
+      'https://test.dayladexpo.com.ng/api/v1/users/forgotPassword';
   static const String resetpass =
-      'https://api.vico.com/api/v1/users/resetPassword/6fd58b6cb03ff92e4550086ec67dca228386607f3e8e242f2adb5faf4de0c5d4';
+      'https://test.dayladexpo.com.ng/api/v1/users/resetPassword/6fd58b6cb03ff92e4550086ec67dca228386607f3e8e242f2adb5faf4de0c5d4';
 
  static const String resendOtp =
       'https://api.vico.com/api/v1/users/resend_verification';
@@ -105,13 +116,13 @@ class UrlConfig {
   static const String allsubcat =
       'https://api.vico.com/api/v1/subcategories';
 
-  ///cart
-  static const String addcart = 'https://api.vico.com/api/v1/cart';
-  static const String getcart = 'https://api.vico.com/api/v1/cart';
+  ///transactions
+  static const String addcart = 'https://api.vico.com/api/v1/transactions';
+  static const String getcart = 'https://api.vico.com/api/v1/transactions';
   static const String coupon = 'https://api.vico.com/api/v1/coupons/apply';
-  static const String updatecart = 'https://api.vico.com/api/v1/cart/item/';
+  static const String updatecart = 'https://api.vico.com/api/v1/transactions/item/';
   static const String removeItemcart =
-      'https://api.vico.com/api/v1/cart/item/';
+      'https://api.vico.com/api/v1/transactions/item/';
 
   ///orders
   static const String allorders =

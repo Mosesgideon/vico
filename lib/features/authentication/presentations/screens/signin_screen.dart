@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vico/common/widgets/custom_dialogs.dart';
 import 'package:vico/core/navigation/route_url.dart';
@@ -34,144 +35,190 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Form(
-            key: key,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                80.verticalSpace,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextView(
-                      text: "Welcome Back",
-                      color: Color(0xff992002),
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    // TextView(text: "Please enter your credentials to login",
-                    //   align: TextAlign.center,),
-                    TextView(text: "Shop smarter with vico - sign in for deals, quick checkouts & tailored recommendations!",
-                    ),                  ],
-                ),
-                30.verticalSpace,
-                TextView(text: "Email"),
-                5.verticalSpace,
-                FilledTextField(
-                  controller: emailcontroller,
-                  hint: "JohnJeo@gmail.com",
-                ),
-                15.verticalSpace,
-                TextView(text: "Password"),
-                5.verticalSpace,
-                FilledTextField(
-                  hint: "*******",
-                  controller: passwordcontroller,
-                  obscured: obscured,
-                  suffix: InkWell(
-                    onTap: () {
-                      setState(() {
-                        obscured = !obscured;
-                      });
-                    },
-                    splashColor: Colors.transparent,
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Center(
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 0.5,
+                        spreadRadius: 1,
+                        offset: Offset(0, 0.5),
+                        color: Pallets.grey35.withOpacity(0.2),
+                      ),
+                    ],
+                  ),
+                  child: Form(
+                    key: key,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        30.verticalSpace,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextView(
+                              text: "Welcome Back",
+                              color: Color(0xff992002),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            // TextView(text: "Please enter your credentials to login",
+                            //   align: TextAlign.center,),
+                            TextView(
+                              text: "Enter your login credentials to continue!",
+                            ),
+                          ],
+                        ),
+                        30.verticalSpace,
+                        Row(
+                          children: [
+                            TextView(text: "Email"),
+                            TextView(text: "*", color: Colors.red),
+                          ],
+                        ),
+                        5.verticalSpace,
+                        FilledTextField(
+                          controller: emailcontroller,
+                          hint: "JohnJeo@gmail.com",
+                          validator:
+                          MultiValidator([
+                            RequiredValidator(errorText: 'This field is required'),
+                          ]).call,
+                        ),
+                        15.verticalSpace,
+                        Row(
+                          children: [
+                            TextView(text: "Password"),
+                            TextView(text: "*", color: Colors.red),
+                          ],
+                        ),
+                        5.verticalSpace,
+                        FilledTextField(
+                          hint: "*******",
+                          validator:
+                          MultiValidator([
+                            RequiredValidator(errorText: 'This field is required'),
+                          ]).call,
+                          controller: passwordcontroller,
+                          obscured: obscured,
+                          suffix: InkWell(
+                            onTap: () {
+                              setState(() {
+                                obscured = !obscured;
+                              });
+                            },
+                            splashColor: Colors.transparent,
 
-                    child: Icon(
-                      obscured ? Iconsax.eye_slash : Iconsax.eye,
-                      color: Pallets.grey35,
+                            child: Icon(
+                              obscured ? Iconsax.eye_slash : Iconsax.eye,
+                              color: Pallets.grey35,
+                            ),
+                          ),
+                        ),
+                        10.verticalSpace,
+                        TextView(
+                          text: "Forgot your password?",
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff992002),
+                          onTap: () {
+                            context.pushNamed(PageUrl.forgot_password);
+                          },
+                        ),
+                        40.verticalSpace,
+                        BlocConsumer<AuthBloc, AuthState>(
+                          listener: _listenToAuthState,
+                          bloc: auth,
+                          builder: (context, state) {
+                            return CustomButton(
+                              child: TextView(
+                                text: "Sign In",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                signinUser();
+                              },
+                            );
+                          },
+                        ),
+                        10.verticalSpace,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextView(
+                              text: "Don't have an account?",
+                              fontSize: 12,
+                            ),
+                            4.horizontalSpace,
+                            TextView(
+                              onTap: () {
+                                context.pushNamed(PageUrl.signup_screen);
+                              },
+                              text: "Register",
+                              fontSize: 12,
+                              color: Color(0xfff18b01),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+
+                        40.verticalSpace,
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     SizedBox(width: 100, child: Divider()),
+                        //     10.horizontalSpace,
+                        //     TextView(text: "Or connect with"),
+                        //     10.horizontalSpace,
+                        //
+                        //     SizedBox(width: 100, child: Divider()),
+                        //   ],
+                        // ),
+                        // 40.verticalSpace,
+                        // BlocConsumer<AuthBloc, AuthState>(
+                        //   bloc: googleauth,
+                        //   listener: _listenToAuthGoogleState,
+                        //   builder: (context, state) {
+                        //     return CustomOutlinedButton(
+                        //       // borderRadius: BorderRadius.circular(25),
+                        //       radius: 10,
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.center,
+                        //         children: [
+                        //           ImageWidget(imageUrl: "assets/images/pngs/gg.png"),
+                        //           30.horizontalSpace,
+                        //           TextView(
+                        //             text: "Continue with Google",
+                        //             color: Colors.black,
+                        //             fontWeight: FontWeight.w600,
+                        //             fontSize: 14,
+                        //           ),
+                        //         ],
+                        //       ),
+                        //       onPressed: () {
+                        //         googleAuth();
+                        //       },
+                        //     );
+                        //   },
+                        // ),
+                      ],
                     ),
                   ),
                 ),
-                10.verticalSpace,
-                TextView(
-                  text: "Forgot your password?",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xff992002),
-                  onTap: () {
-                    context.pushNamed(PageUrl.forgot_password);
-                  },
-                ),
-                40.verticalSpace,
-                BlocConsumer<AuthBloc, AuthState>(
-                  listener: _listenToAuthState,
-                  bloc: auth,
-                  builder: (context, state) {
-                    return CustomButton(
-                      child: TextView(
-                        text: "Sign In",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        signinUser();
-                      },
-                    );
-                  },
-                ),
-                10.verticalSpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextView(text: "New to Our Product?", fontSize: 12),
-                    4.horizontalSpace,
-                    TextView(
-                      onTap: () {
-                        context.pushNamed(PageUrl.signup_screen);
-                      },
-                      text: "Create Account",
-                      fontSize: 12,
-                      color: Color(0xff992002),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ],
-                ),
-
-
-                40.verticalSpace,
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     SizedBox(width: 100, child: Divider()),
-                //     10.horizontalSpace,
-                //     TextView(text: "Or connect with"),
-                //     10.horizontalSpace,
-                //
-                //     SizedBox(width: 100, child: Divider()),
-                //   ],
-                // ),
-                // 40.verticalSpace,
-                // BlocConsumer<AuthBloc, AuthState>(
-                //   bloc: googleauth,
-                //   listener: _listenToAuthGoogleState,
-                //   builder: (context, state) {
-                //     return CustomOutlinedButton(
-                //       // borderRadius: BorderRadius.circular(25),
-                //       radius: 10,
-                //       child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           ImageWidget(imageUrl: "assets/images/pngs/gg.png"),
-                //           30.horizontalSpace,
-                //           TextView(
-                //             text: "Continue with Google",
-                //             color: Colors.black,
-                //             fontWeight: FontWeight.w600,
-                //             fontSize: 14,
-                //           ),
-                //         ],
-                //       ),
-                //       onPressed: () {
-                //         googleAuth();
-                //       },
-                //     );
-                //   },
-                // ),
-              ],
+              ),
             ),
           ),
         ),
@@ -181,6 +228,8 @@ class _SigninScreenState extends State<SigninScreen> {
 
   void signinUser() {
     if (key.currentState!.validate()) {
+
+      // context.goNamed(PageUrl.home);
       auth.add(
         SignInEvent(
           emailcontroller.text.trim(),

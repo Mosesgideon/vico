@@ -5,7 +5,7 @@ import 'hive_manager.dart';
 
 class HiveStore {
   // static const storeBox = '_storeBox';
-  static const cart = 'cart';
+  static const cart = 'transactions';
   static const user = 'user_data';
 
   final Box<dynamic> _box = Hive.box(HiveBoxes.storeBox);

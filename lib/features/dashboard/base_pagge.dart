@@ -12,7 +12,6 @@ import '../../core/constants/package_exports.dart';
 import '../../core/di/injector.dart';
 import '../../core/theme/pallets.dart';
 import '../../gen/assets.gen.dart';
-import '../cart/presentations/cartbloc/cart_bloc.dart';
 
 final GlobalKey<ScaffoldState> baseScaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -38,11 +37,11 @@ class _BasePageState extends State<BasePage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    mycart.add(GetCartEvent());
+
     // context.read<CartBloc>().add(GetCartEvent());
   }
 
-  final mycart = injector.get<CartBloc>();
+
 
   @override
   void dispose() {

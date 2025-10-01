@@ -6,7 +6,6 @@ import 'package:vico/features/my_orders/data/models/review.dart';
 import 'package:vico/features/my_orders/domain/order_repository.dart';
 
 import '../../../../core/di/injector.dart';
-import '../../../cart/presentations/cartbloc/cart_bloc.dart';
 import '../../data/models/all_orders.dart';
 import '../../data/models/review_response.dart';
 import '../../data/models/single_order.dart';
@@ -32,7 +31,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     emit(OrderLoadingState());
     try {
       var response=await repository.allorders();
-      injector.get<CartBloc>().add(GetCartEvent());
       emit(GetAllOrderSuccesState(response));
     }  catch (e) {
       emit(OrderFailiureState(e.toString()));

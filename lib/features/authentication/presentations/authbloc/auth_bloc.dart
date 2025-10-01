@@ -27,7 +27,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<SignInEvent>(_mapSignInEventToState);
     on<SignUpEvent>(_mapSignUpEventToState);
-    on<OtpEvent>(_mapSOtpEventToState);
     on<ForgotPasEvent>(_mapForgotPasEventToState);
     on<ResendOTpSignUpEvent>(_mapResendOTpSignUpEventToState);
     on<GoogleSignUpEvent>(_mapGoogleSignUpEventToState);
@@ -53,20 +52,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthloadingState());
     try {
       var response=await repository.signup(event.payload);
+      AuthSuccessUseCase().execute(response);
       emit(AuthSuccessState(response));
-    }  catch (e) {
-      emit(AuthfailiureState(e.toString()));
-      rethrow;
-      // TODO
-    }
-
-  }
-
-  Future<void> _mapSOtpEventToState(OtpEvent event, Emitter<AuthState> emit) async {
-    emit(AuthloadingState());
-    try {
-      var response =await repository.verify(event.payload);
-      emit(OtpSuccessState(response));
 
     }  catch (e) {
       emit(AuthfailiureState(e.toString()));
@@ -75,6 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
   }
+
 
   Future<void> _mapForgotPasEventToState(ForgotPasEvent event, Emitter<AuthState> emit) async {
 

@@ -7,11 +7,11 @@ class EditprofileResponse {
   });
 
   final String? status;
-  final vicoUser? data;
+  final VicoUser? data;
 
   EditprofileResponse copyWith({
     String? status,
-    vicoUser? data,
+    VicoUser? data,
   }) {
     return EditprofileResponse(
       status: status ?? this.status,
@@ -22,7 +22,7 @@ class EditprofileResponse {
   factory EditprofileResponse.fromJson(Map<String, dynamic> json){
     return EditprofileResponse(
       status: json["status"],
-      data: vicoUser.fromJson(json["data"]),
+      data: VicoUser.fromJson(json["data"]),
     );
   }
 
@@ -42,10 +42,10 @@ class Data {
     required this.user,
   });
 
-  final vicoUser? user;
+  final VicoUser? user;
 
   Data copyWith({
-    vicoUser? user,
+    VicoUser? user,
   }) {
     return Data(
       user: user ?? this.user,
@@ -54,7 +54,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json){
     return Data(
-      user: json["user"] == null ? null : vicoUser.fromJson(json["user"]),
+      user: json["user"] == null ? null : VicoUser.fromJson(json["user"]),
     );
   }
 

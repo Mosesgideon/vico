@@ -6,7 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 /// initialize local data storage
 
 class HiveBoxes {
-  static const cart = 'cart';
+  static const cart = 'transactions';
   static const storeBox = 'storeBox';
   static const userBox = 'user_box';
 
@@ -27,7 +27,7 @@ class HiveBoxes {
     // sl<UserImpDao>().truncate();
 
     // await Future.wait([
-    //   closeBox(cart),
+    //   closeBox(transactions),
     //   closeBox(storeBox),
     //   closeBox(userBox),
     // ]);

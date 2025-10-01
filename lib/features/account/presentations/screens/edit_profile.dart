@@ -38,19 +38,7 @@ class _EditProfileState extends State<EditProfile> {
   void initState() {
     // TODO: implement initState
     final userData = user.appUser;
-    if (userData != null) {
-      if (nigeriaStates.contains(userData.state)) {
-        selectedReason = userData.state;
-      } else {
-        selectedReason = null;
-      }
-      selectedReason = userData.state ?? '';
-      firstnaamecontroller.text = userData.firstName ?? '';
-      lastnaamecontroller.text = userData.lastName ?? '';
-      emailcontroller.text = userData.email ?? '';
-      numbercontroller.text = userData.primaryPhone ?? '';
-      address1controller.text = userData.primaryAddress ?? '';
-    }
+
     super.initState();
   }
 

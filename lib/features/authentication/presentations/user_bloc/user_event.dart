@@ -3,7 +3,7 @@ part of 'user_bloc.dart';
 @immutable
 abstract class UserEvent extends Equatable {}
 class UpdateUserEvent extends UserEvent {
-  final vicoUser user;
+  final VicoUser user;
 
   UpdateUserEvent(this.user);
 
@@ -11,7 +11,7 @@ class UpdateUserEvent extends UserEvent {
   List<Object?> get props => [user];
 }
 class SaveUserEvent extends UserEvent {
-  final vicoUser appUser;
+  final VicoUser appUser;
   // final GoogleResponse googleuser;
 
   SaveUserEvent(this.appUser, );

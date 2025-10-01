@@ -46,10 +46,10 @@ class Data {
     required this.user,
   });
 
-  final vicoUser? user;
+  final VicoUser? user;
 
   Data copyWith({
-    vicoUser? user,
+    VicoUser? user,
   }) {
     return Data(
       user: user ?? this.user,
@@ -58,7 +58,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json){
     return Data(
-      user: json["user"] == null ? null : vicoUser.fromJson(json["user"]),
+      user: json["user"] == null ? null : VicoUser.fromJson(json["user"]),
     );
   }
 
@@ -72,129 +72,99 @@ class Data {
   }
 }
 
-class vicoUser {
-  vicoUser({
+class VicoUser {
+  VicoUser({
     required this.id,
     required this.firstName,
     required this.lastName,
     required this.email,
-    required this.primaryPhone,
-    required this.primaryAddress,
-    required this.state,
-    required this.photo,
-    required this.passwordChangedAt,
+    required this.phone,
     required this.passwordResetToken,
-    required this.passwordResetExpires,
+    required this.passwordChangedAt,
+    required this.accountId,
+    required this.referralId,
     required this.role,
     required this.status,
-    required this.emailVerificationCode,
-    required this.emailVerificationExpires,
-    required this.isEmailVerified,
-    required this.ninNumber,
-    required this.businessName,
-    required this.businessCategoryId,
-    required this.businessLogo,
+    required this.photo,
+    required this.passwordResetExpires,
     required this.createdAt,
     required this.updatedAt,
+    required this.wallet,
   });
 
-  final dynamic? id;
+  final int? id;
   final String? firstName;
   final String? lastName;
   final String? email;
-  final String? primaryPhone;
-  final String? primaryAddress;
-  final String? state;
-  final String? photo;
-  final dynamic passwordChangedAt;
+  final String? phone;
   final dynamic passwordResetToken;
-  final dynamic passwordResetExpires;
+  final dynamic passwordChangedAt;
+  final dynamic accountId;
+  final dynamic referralId;
   final String? role;
   final String? status;
-  final dynamic emailVerificationCode;
-  final dynamic emailVerificationExpires;
-  final bool? isEmailVerified;
-  final dynamic ninNumber;
-  final dynamic businessName;
-  final dynamic businessCategoryId;
-  final dynamic businessLogo;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String? photo;
+  final dynamic passwordResetExpires;
+  final dynamic createdAt;
+  final dynamic updatedAt;
+  final dynamic wallet;
 
-  vicoUser copyWith({
-    dynamic? id,
+  VicoUser copyWith({
+    int? id,
     String? firstName,
     String? lastName,
     String? email,
-    String? primaryPhone,
-    String? primaryAddress,
-    String? state,
-    String? photo,
-    dynamic? passwordChangedAt,
+    String? phone,
     dynamic? passwordResetToken,
-    dynamic? passwordResetExpires,
+    dynamic? passwordChangedAt,
+    dynamic? accountId,
+    dynamic? referralId,
     String? role,
     String? status,
-    dynamic? emailVerificationCode,
-    dynamic? emailVerificationExpires,
-    bool? isEmailVerified,
-    dynamic? ninNumber,
-    dynamic? businessName,
-    dynamic? businessCategoryId,
-    dynamic? businessLogo,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    String? photo,
+    dynamic? passwordResetExpires,
+    dynamic? createdAt,
+    dynamic? updatedAt,
+    dynamic? wallet,
   }) {
-    return vicoUser(
+    return VicoUser(
       id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
-      primaryPhone: primaryPhone ?? this.primaryPhone,
-      primaryAddress: primaryAddress ?? this.primaryAddress,
-      state: state ?? this.state,
-      photo: photo ?? this.photo,
-      passwordChangedAt: passwordChangedAt ?? this.passwordChangedAt,
+      phone: phone ?? this.phone,
       passwordResetToken: passwordResetToken ?? this.passwordResetToken,
-      passwordResetExpires: passwordResetExpires ?? this.passwordResetExpires,
+      passwordChangedAt: passwordChangedAt ?? this.passwordChangedAt,
+      accountId: accountId ?? this.accountId,
+      referralId: referralId ?? this.referralId,
       role: role ?? this.role,
       status: status ?? this.status,
-      emailVerificationCode: emailVerificationCode ?? this.emailVerificationCode,
-      emailVerificationExpires: emailVerificationExpires ?? this.emailVerificationExpires,
-      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
-      ninNumber: ninNumber ?? this.ninNumber,
-      businessName: businessName ?? this.businessName,
-      businessCategoryId: businessCategoryId ?? this.businessCategoryId,
-      businessLogo: businessLogo ?? this.businessLogo,
+      photo: photo ?? this.photo,
+      passwordResetExpires: passwordResetExpires ?? this.passwordResetExpires,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      wallet: wallet ?? this.wallet,
     );
   }
 
-  factory vicoUser.fromJson(Map<String, dynamic> json){
-    return vicoUser(
+  factory VicoUser.fromJson(Map<String, dynamic> json){
+    return VicoUser(
       id: json["id"],
       firstName: json["firstName"],
       lastName: json["lastName"],
       email: json["email"],
-      primaryPhone: json["primaryPhone"],
-      primaryAddress: json["primaryAddress"],
-      state: json["state"],
-      photo: json["photo"],
-      passwordChangedAt: json["passwordChangedAt"],
+      phone: json["phone"],
       passwordResetToken: json["passwordResetToken"],
-      passwordResetExpires: json["passwordResetExpires"],
+      passwordChangedAt: json["passwordChangedAt"],
+      accountId: json["accountId"],
+      referralId: json["referralId"],
       role: json["role"],
       status: json["status"],
-      emailVerificationCode: json["emailVerificationCode"],
-      emailVerificationExpires: json["emailVerificationExpires"],
-      isEmailVerified: json["isEmailVerified"],
-      ninNumber: json["ninNumber"],
-      businessName: json["businessName"],
-      businessCategoryId: json["businessCategoryId"],
-      businessLogo: json["businessLogo"],
-      createdAt: DateTime.tryParse(json["createdAt"] ?? ""),
-      updatedAt: DateTime.tryParse(json["updatedAt"] ?? ""),
+      photo: json["photo"],
+      passwordResetExpires: json["passwordResetExpires"],
+      createdAt: json["createdAt"],
+      updatedAt: json["updatedAt"],
+      wallet: json["wallet"],
     );
   }
 
@@ -203,28 +173,22 @@ class vicoUser {
     "firstName": firstName,
     "lastName": lastName,
     "email": email,
-    "primaryPhone": primaryPhone,
-    "primaryAddress": primaryAddress,
-    "state": state,
-    "photo": photo,
-    "passwordChangedAt": passwordChangedAt,
+    "phone": phone,
     "passwordResetToken": passwordResetToken,
-    "passwordResetExpires": passwordResetExpires,
+    "passwordChangedAt": passwordChangedAt,
+    "accountId": accountId,
+    "referralId": referralId,
     "role": role,
     "status": status,
-    "emailVerificationCode": emailVerificationCode,
-    "emailVerificationExpires": emailVerificationExpires,
-    "isEmailVerified": isEmailVerified,
-    "ninNumber": ninNumber,
-    "businessName": businessName,
-    "businessCategoryId": businessCategoryId,
-    "businessLogo": businessLogo,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
+    "photo": photo,
+    "passwordResetExpires": passwordResetExpires,
+    "createdAt": createdAt,
+    "updatedAt": updatedAt,
+    "wallet": wallet,
   };
 
   @override
   String toString(){
-    return "$id, $firstName, $lastName, $email, $primaryPhone, $primaryAddress, $state, $photo, $passwordChangedAt, $passwordResetToken, $passwordResetExpires, $role, $status, $emailVerificationCode, $emailVerificationExpires, $isEmailVerified, $ninNumber, $businessName, $businessCategoryId, $businessLogo, $createdAt, $updatedAt, ";
+    return "$id, $firstName, $lastName, $email, $phone, $passwordResetToken, $passwordChangedAt, $accountId, $referralId, $role, $status, $photo, $passwordResetExpires, $createdAt, $updatedAt, $wallet, ";
   }
 }

@@ -46,9 +46,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         final updatedUser = currentUser.copyWith(
           firstName: event.firstname,
           lastName: event.lastname,
-          primaryPhone: event.number,
-          primaryAddress: event.address,
-          state: event.state,
         );
 
         // Update UserBloc with the new user data

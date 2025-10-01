@@ -135,7 +135,7 @@ class $AssetsImagesPngsGen {
   AssetGenImage get logout =>
       const AssetGenImage('assets/images/pngs/logout.png');
  AssetGenImage get cart =>
-      const AssetGenImage('assets/images/pngs/cart.png');
+      const AssetGenImage('assets/images/pngs/transactions.png');
 
   AssetGenImage get briefcase =>
       const AssetGenImage('assets/images/pngs/briefcase.png');

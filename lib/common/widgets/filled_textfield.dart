@@ -97,7 +97,7 @@ class _FilledTextFieldState extends State<FilledTextField> {
           fontWeight: FontWeight.w500),
       decoration: AppStyles.filledTextFieldDecoration.copyWith(
           fillColor:
-          widget.fillColor ?? Theme.of(context).colorScheme.surface,
+          widget.fillColor ?? Colors.white,
           enabledBorder: widget.hasBorder!
               ? OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.radius),

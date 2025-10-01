@@ -42,7 +42,7 @@ part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final _userStorage = UserStorage();
-  vicoUser? appUser;
+  VicoUser? appUser;
   UserBloc() : super(UserInitial()) {
     on<UserEvent>((event, emit) {
       // TODO: implement event handler
@@ -63,7 +63,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       GetUserEvent event, Emitter<UserState> emit) async {
     var user = await _userStorage.getUser();
     if (user != null) {
-      appUser =vicoUser.fromJson(user as Map<String,dynamic>) ;
+      appUser =VicoUser.fromJson(user as Map<String,dynamic>) ;
       emit(UserCachedState(appUser!));
     }
   }

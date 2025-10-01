@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vico/common/widgets/custom_appbar.dart';
 
@@ -18,9 +19,11 @@ class _CategoriesState extends State<Categories> {
   @override
   void initState() {
     // TODO: implement initState
-
     super.initState();
   }
+
+
+  final List<String>title=["Buy Gift Card","Sell Gift Card","Buy Crypto","Sell Crypto"];
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +40,14 @@ class _CategoriesState extends State<Categories> {
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 10), itemBuilder: (BuildContext context, int index) {
             return InkWell(
+              splashColor: Colors.transparent,
               onTap: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySell()));
+                // Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySell(text: title[index],)));
+
+                if(title[index].contains("Buy Gift Card")||title[index].contains("Sell Gift Card")){
+                  Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySell(text: title[index],)));
+
+                }
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -48,8 +57,12 @@ class _CategoriesState extends State<Categories> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.attach_money,size: 50,color: Colors.white,),
-                    TextView(text: "Sell GiftCard",color: Colors.white,fontSize: 16,)
+                    CircleAvatar(
+                      backgroundColor: Colors.yellowAccent.withOpacity(0.3),
+                      radius: 30,
+                        child: Icon(Icons.currency_bitcoin,size: 50,color: Colors.white,)),
+                    5.verticalSpace,
+                    TextView(text:title[index],color: Colors.white,fontSize: 16,)
                   ],
                 ),
               ),

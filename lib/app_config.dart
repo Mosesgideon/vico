@@ -40,9 +40,9 @@ class AppConfig {
     WidgetsFlutterBinding.ensureInitialized();
     // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     // initFirebaseServices();
-    // await SessionManager.instance.init();
+    await SessionManager.instance.init();
     // tz.initializeTimeZones();
-    // await Hive.initFlutter();
+    await Hive.initFlutter();
     await di.init();
     // await initializeDB();
     await initCore();

@@ -24,7 +24,7 @@ class PageUrl {
   static const privacy = 'privacy';
   static const weekly_offer = 'weekly_offer';
 
-  ///cart
+  ///transactions
   static const mycart = 'my_cart';
   static const my_orders = 'my_orders';
   static const track_item = 'track_item';
