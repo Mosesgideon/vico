@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:vico/features/buy_sel/data/models/crypto_response.dart';
 import 'package:vico/features/buy_sel/data/models/get_all_cards.dart';
 import 'package:vico/features/buy_sel/data/models/sell_card_payload.dart';
 import 'package:vico/features/buy_sel/domain/buy_sell_repo.dart';
@@ -17,6 +18,7 @@ class BuyAndSellBloc extends Bloc<BuyAndSellEvent, BuyAndSellState> {
     });
 
     on<GetAllCardsEvent>(_mapGetAllCardsEventToState);
+    on<GetAllCryptoEvent>(_mapGetAllCryptoEventToState);
     on<SellCardsEvent>(_mapSellCardsEventToState);
   }
 
@@ -38,13 +40,23 @@ class BuyAndSellBloc extends Bloc<BuyAndSellEvent, BuyAndSellState> {
     emit(BuyAnSellloadingState());
     try {
       var response=await repository.sellCard(event.payload);
-
       emit(SellCardsSuccessState());
     }  catch (e) {
       emit(BuyAnSellfailiureState(e.toString()));
       rethrow;
       // TODO
     }
+  }
 
+  Future<void> _mapGetAllCryptoEventToState(GetAllCryptoEvent event, Emitter<BuyAndSellState> emit) async {
+    emit(BuyAnSellloadingCrptoState());
+    try {
+      var response=await repository.getCrypto();
+      emit(GetAllCryptoSuccessState(response));
+    }  catch (e) {
+      emit(BuyAnSellfailiureState(e.toString()));
+      rethrow;
+      // TODO
+    }
   }
 }

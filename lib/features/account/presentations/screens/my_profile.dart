@@ -17,6 +17,7 @@ import 'package:vico/features/account/presentations/profile/profile_bloc.dart';
 import 'package:vico/features/authentication/presentations/user_bloc/user_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../common/widgets/image_widget.dart';
 import '../../../../common/widgets/info_dialog.dart';
 import '../../../../core/services/data/session_manager.dart';
 
@@ -29,6 +30,7 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
 
+  final user=injector.get<UserBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +75,9 @@ class _MyProfileState extends State<MyProfile> {
               10.verticalSpace,
               Divider(),
               50.verticalSpace,
-              Center(child:CircleAvatar(radius: 55,),),
+              user.appUser?.photo==null?Icon(Iconsax.user): ImageWidget(imageUrl: user.appUser?.photo??'',height: 120,width: 120,borderRadius: BorderRadius.circular(60),border: Border.all(color: Color(0xfff18b01)),
 
+),
               30.verticalSpace,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +92,14 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:35),
-                    child: TextView(text: "Moses Gideon",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                    child: Row(
+                      children: [
+                        TextView(text:   user.appUser?.firstName??'',color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,)
+                        ,
+                        5.horizontalSpace,
+                        TextView(text:   user.appUser?.lastName??'',color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -107,7 +117,7 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:35),
-                    child: TextView(text: "mosesgideon072@gmail.com",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                    child: TextView(text:user.appUser?.email??'',color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
                   )
                 ],
               ),
@@ -125,7 +135,7 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:35),
-                    child: TextView(text: "+234(0)7042973460",color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
+                    child: TextView(text:user.appUser?.phone??'',color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500,),
                   )
                 ],
               ),

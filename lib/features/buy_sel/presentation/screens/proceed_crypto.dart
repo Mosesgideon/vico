@@ -1,21 +1,21 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:vico/common/widgets/custom_appbar.dart';
-import 'package:vico/common/widgets/custom_button.dart';
-import 'package:vico/common/widgets/text_view.dart';
-class ProceedCheckout extends StatefulWidget {
+
+import '../../../../common/widgets/custom_appbar.dart';
+import '../../../../common/widgets/custom_button.dart';
+import '../../../../common/widgets/text_view.dart';
+class ProceedCrypto extends StatefulWidget {
   final String amount;
-  const ProceedCheckout({super.key, required this.amount});
+  final String wallet;
+  final String crrency;
+  const ProceedCrypto({super.key, required this.amount, required this.wallet, required this.crrency});
 
   @override
-  State<ProceedCheckout> createState() => _ProceedCheckoutState();
+  State<ProceedCrypto> createState() => _ProceedCryptoState();
 }
 
-class _ProceedCheckoutState extends State<ProceedCheckout> {
+class _ProceedCryptoState extends State<ProceedCrypto> {
   final picke=ImagePicker();
   XFile? myfile;
   @override
@@ -33,13 +33,13 @@ class _ProceedCheckoutState extends State<ProceedCheckout> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue.withOpacity(0.1)
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue.withOpacity(0.1)
 
-                ),
-                  child: TextView(text: "Please send only the sum of ₦${widget.amount} to the account below. Do not send more or less than this amount.",color: Colors.grey,)),
+                  ),
+                  child: TextView(text: "Please send exactly ₦${widget.amount} to the account below. Do not send more or less than this amount.",color: Colors.grey,fontSize: 12,)),
               20.verticalSpace,
               Container(
                   padding: EdgeInsets.all(10),
@@ -91,20 +91,59 @@ class _ProceedCheckoutState extends State<ProceedCheckout> {
                   )),
               20.verticalSpace,
               Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepOrange.withOpacity(0.5)),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue.withOpacity(0.1)
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue.withOpacity(0.1)
 
-                ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextView(text: "Crypto Details",color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500,),
+                      20.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextView(text: "Cryptocurrency:",color: Colors.grey,),
+                          TextView(text: widget.crrency,color: Colors.white,),
+                        ],
+                      ),
+                      5.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextView(text: "Amount:",color: Colors.grey,),
+                          TextView(text: widget.amount,color: Colors.white,),
+                        ],
+                      ),
+                      5.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextView(text: "Receiving Wallet:",color: Colors.grey,),
+                          TextView(text: widget.wallet,color: Colors.white,),
+                        ],
+                      ),
+
+                    ],
+                  )),
+              20.verticalSpace,
+              Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.deepOrange.withOpacity(0.5)),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue.withOpacity(0.1)
+
+                  ),
                   child: TextView(text: "Ensure to take a screenshot/snapshot of the transfer confirmation page and upload it below for verification.",color: Colors.yellowAccent.withOpacity(0.5),fontSize: 11,)),
               30.verticalSpace,
               myfile!=null?Container(
                 padding: EdgeInsets.only(top: 10),
                 decoration:BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all()
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all()
                 ),
                 child: Column(
                   children: [
@@ -113,12 +152,12 @@ class _ProceedCheckoutState extends State<ProceedCheckout> {
                       children: [
                         2.horizontalSpace,
                         InkWell(
-                          splashColor: Colors.transparent,
-                          onTap: (){
-                            setState(() {
-                              myfile=null;
-                            });
-                          },
+                            splashColor: Colors.transparent,
+                            onTap: (){
+                              setState(() {
+                                myfile=null;
+                              });
+                            },
 
                             child: Icon(Icons.cancel_rounded,color: Colors.grey,))
                       ],
@@ -127,8 +166,8 @@ class _ProceedCheckoutState extends State<ProceedCheckout> {
                     Container(
                       height: 100,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(image: AssetImage(myfile!.path,),fit: BoxFit.cover)
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(image: AssetImage(myfile!.path,),fit: BoxFit.cover)
 
                       ),
                     ),

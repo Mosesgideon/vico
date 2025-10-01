@@ -229,7 +229,7 @@ class CustomDialogs {
       bool? useRootNavigator = false,
       bool? barrierDismissible = true}) async {
     final dialog = Dialog(
-      backgroundColor: Pallets.white,
+      backgroundColor: Color(0xff101828),
       elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),

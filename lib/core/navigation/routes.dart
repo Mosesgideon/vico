@@ -240,7 +240,7 @@ class CustomRoutes {
                 name: PageUrl.mycart,
                 pageBuilder:
                     (context, state) => NoTransitionPage(
-                      child: MyCart(),
+                      child: TransactionScreen(),
                     ),
                 routes: [],
               ),

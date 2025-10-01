@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:vico/common/widgets/custom_appbar.dart';
 import 'package:vico/common/widgets/custom_button.dart';
 import 'package:vico/common/widgets/custom_dialogs.dart';
+import 'package:vico/common/widgets/image_widget.dart';
 import 'package:vico/common/widgets/text_view.dart';
 import 'package:vico/core/di/injector.dart';
 import 'package:vico/core/navigation/route_url.dart';
@@ -28,6 +29,8 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
+  final user=injector.get<UserBloc>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +44,9 @@ class _ProfileState extends State<Profile> {
        children: [
          Center(child: Column(
            children: [
-             CircleAvatar(radius: 50,),
-             4.verticalSpace,
-             TextView(text: "mosesgideon072@gmail.com",color: Colors.white,)
+             user.appUser?.photo==null?Icon(Iconsax.user): ImageWidget(imageUrl: user.appUser?.photo??'',height: 120,width: 120,borderRadius: BorderRadius.circular(60),border: Border.all(color: Color(0xfff18b01)),)
+             ,4.verticalSpace,
+             TextView(text: user.appUser?.email??'',color: Colors.white,)
            ],
          )),
          40.verticalSpace,

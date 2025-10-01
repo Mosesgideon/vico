@@ -3,34 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:vico/common/widgets/custom_appbar.dart';
-import 'package:vico/common/widgets/custom_button.dart';
-import 'package:vico/common/widgets/custom_dialogs.dart';
-import 'package:vico/common/widgets/outlined_form_field.dart';
 import 'package:vico/common/widgets/text_view.dart';
-import 'package:vico/core/services/network/network_service.dart';
-import 'package:vico/features/account/data/repo_impl/profile_repo_impl.dart';
-import 'package:vico/features/buy_sel/data/data/buy_sell_repo_impl.dart';
-import 'package:vico/features/buy_sel/data/models/sell_card_payload.dart';
-import 'package:vico/features/buy_sel/domain/buy_sell_repo.dart';
-import 'package:vico/features/buy_sel/presentation/bloc/buy_and_sell_bloc.dart';
 
+import '../../../../common/widgets/custom_appbar.dart';
+import '../../../../common/widgets/custom_button.dart';
+import '../../../../common/widgets/outlined_form_field.dart';
+import '../../../../core/services/network/network_service.dart';
 import '../../../../core/theme/pallets.dart';
+import '../../../account/data/repo_impl/profile_repo_impl.dart';
 import '../../../account/presentations/bankbloc/bank_bloc.dart';
-
-class SellScreen extends StatefulWidget {
+import '../../data/data/buy_sell_repo_impl.dart';
+import '../bloc/buy_and_sell_bloc.dart';
+class SellCoin extends StatefulWidget {
   final String rate;
-
-  const SellScreen({super.key, required this.rate});
+  final String name;
+  const SellCoin({super.key, required this.name, required this.rate});
 
   @override
-  State<SellScreen> createState() => _SellScreenState();
+  State<SellCoin> createState() => _SellCoinState();
 }
 
-class _SellScreenState extends State<SellScreen> {
+class _SellCoinState extends State<SellCoin> {
   final pickimage = ImagePicker();
   XFile? myfile;
   final usdController = TextEditingController();
@@ -51,14 +46,15 @@ class _SellScreenState extends State<SellScreen> {
   }
 
   String? selectedAccount;
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(fgColor: Colors.grey, bgColor: Color(0xff0f172a)),
+    return  Scaffold(
       backgroundColor: Color(0xff0f172a),
-
+      appBar: CustomAppBar(
+        tittle: TextView(text: "Sell ${widget.name}",color: Colors.white,fontSize: 18,fontWeight: FontWeight.w600,),
+        fgColor: Colors.grey,
+        bgColor: Color(0xff0f172a),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 50),
@@ -68,7 +64,7 @@ class _SellScreenState extends State<SellScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextView(
-                  text: "Sell Yor Gift Card",
+                  text: "Sell Yor ${widget.name}",
                   fontSize: 20,
                   color: Colors.white,
                 ),
@@ -99,12 +95,12 @@ class _SellScreenState extends State<SellScreen> {
                 15.verticalSpace,
                 Row(
                   children: [
-                    TextView(text: "Card Number", color: Colors.grey),
+                    TextView(text: "Amount in ${widget.name}", color: Colors.grey),
                     TextView(text: "*", color: Colors.red),
                   ],
                 ),
                 OutlinedFormField(
-                  hint: "0.0",
+                  hint: "0.0000000",
                   controller: numberController,
                   validator:
                   MultiValidator([
@@ -228,7 +224,7 @@ class _SellScreenState extends State<SellScreen> {
                             ),
                           );
                         }
-                       return SizedBox();
+                        return SizedBox();
                       },
                     ),
                   ),
@@ -349,23 +345,17 @@ class _SellScreenState extends State<SellScreen> {
                 ),
                 30.verticalSpace,
 
-                BlocConsumer<BuyAndSellBloc, BuyAndSellState>(
-                  bloc: sellbloc,
-                  listener: _listentTosellState,
-                  builder: (context, state) {
-                    return CustomButton(
-                      child: TextView(
-                        text: "Sell Card",
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
-                      onPressed: () {
-                        sellCard();
-                      },
-                    );
-                  },
-                ),
+            CustomButton(
+              child: TextView(
+                text: "Confirm",
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+              ),
+              onPressed: () {
+
+              },
+            )
               ],
             ),
           ),
@@ -373,7 +363,6 @@ class _SellScreenState extends State<SellScreen> {
       ),
     );
   }
-
   void _takeimage() async {
     final imagefiles = await pickimage.pickImage(source: ImageSource.gallery);
 
@@ -384,36 +373,4 @@ class _SellScreenState extends State<SellScreen> {
     });
   }
 
-  void _listentTosellState(BuildContext context, BuyAndSellState state) {
-    if (state is BuyAnSellloadingState) {
-      CustomDialogs.showLoading(context);
-    }
-    if (state is BuyAnSellfailiureState) {
-      context.pop();
-      CustomDialogs.showToast(state.error);
-    }
-    if (state is SellCardsSuccessState) {
-      context.pop();
-      CustomDialogs.showToast("You've successfully sold your card");
-      context.pop();
-    }
-  }
-
-  void sellCard() {
-    if (key.currentState!.validate()) {
-      sellbloc.add(
-        SellCardsEvent(
-          SellCardPayload(
-            assetType: '',
-            assetId: '',
-            transactionType: '',
-            usdAmount: '',
-            cardNum: '',
-            receivingAccount: null,
-            cardImage: '',
-          ),
-        ),
-      );
-    }
-  }
 }

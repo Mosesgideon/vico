@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vico/common/widgets/custom_appbar.dart';
+import 'package:vico/features/buy_sel/presentation/screens/sell_crypto.dart';
 
 import '../../../../common/widgets/text_view.dart';
 import '../../../buy_sel/presentation/screens/buy_sell.dart';
@@ -48,6 +49,12 @@ class _CategoriesState extends State<Categories> {
                   Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySell(text: title[index],)));
 
                 }
+                if(title[index].contains("Buy Crypto")||title[index].contains("Sell Crypto")){
+                  Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySellCrypto(text: title[index],)));
+
+
+                }
+
               },
               child: Container(
                 decoration: BoxDecoration(

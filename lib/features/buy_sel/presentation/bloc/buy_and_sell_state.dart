@@ -13,6 +13,11 @@ class BuyAnSellloadingState extends BuyAndSellState {
   // TODO: implement props
   List<Object?> get props => [];
 }
+class BuyAnSellloadingCrptoState extends BuyAndSellState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
 class BuyAnSellfailiureState extends BuyAndSellState {
   String error;
   BuyAnSellfailiureState(this.error);
@@ -25,6 +30,13 @@ class BuyAnSellfailiureState extends BuyAndSellState {
 class GetAllCardsSuccessState extends BuyAndSellState {
   GiftCardSuccessResponse response;
   GetAllCardsSuccessState(this.response);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [response];
+}
+class GetAllCryptoSuccessState extends BuyAndSellState {
+  GetAllCryptoResponse response;
+  GetAllCryptoSuccessState(this.response);
   @override
   // TODO: implement props
   List<Object?> get props => [response];

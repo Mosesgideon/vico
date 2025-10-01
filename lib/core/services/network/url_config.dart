@@ -68,8 +68,13 @@ class UrlConfig {
       'https://test.dayladexpo.com.ng/api/v1/transactions';
   static const String giftcards =
       'https://test.dayladexpo.com.ng/api/v1/giftcards';
+  static const String getcrypto =
+      'https://test.dayladexpo.com.ng/api/v1/coins';
   static const String sellcards =
       'https://test.dayladexpo.com.ng/api/v1/transactions';
+  static const String alltransactions =
+      'https://test.dayladexpo.com.ng/api/v1/transactions';
+
   static const String getbank =
       'https://test.dayladexpo.com.ng/api/v1/bankAccounts';
 
