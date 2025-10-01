@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vico/common/widgets/custom_appbar.dart';
+import 'package:vico/common/widgets/image_widget.dart';
 import 'package:vico/features/buy_sel/presentation/screens/sell_crypto.dart';
 
 import '../../../../common/widgets/text_view.dart';
@@ -25,6 +26,7 @@ class _CategoriesState extends State<Categories> {
 
 
   final List<String>title=["Buy Gift Card","Sell Gift Card","Buy Crypto","Sell Crypto"];
+  final List<String>images=["assets/images/pngs/gift.jpg","assets/images/pngs/gift.jpg","assets/images/pngs/crypt.png","assets/images/pngs/crypt.png","assets/images/pngs/crypt.png"];
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +66,22 @@ class _CategoriesState extends State<Categories> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.yellowAccent.withOpacity(0.3),
-                      radius: 30,
-                        child: Icon(Icons.currency_bitcoin,size: 50,color: Colors.white,)),
+                    ImageWidget(
+                      onTap: (){
+                        // Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySell(text: title[index],)));
+
+                        if(title[index].contains("Buy Gift Card")||title[index].contains("Sell Gift Card")){
+                          Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySell(text: title[index],)));
+
+                        }
+                        if(title[index].contains("Buy Crypto")||title[index].contains("Sell Crypto")){
+                          Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>BuySellCrypto(text: title[index],)));
+
+
+                        }
+
+                      },
+                      imageUrl: images[index],size: 100,borderRadius: BorderRadius.circular(25),),
                     5.verticalSpace,
                     TextView(text:title[index],color: Colors.white,fontSize: 16,)
                   ],

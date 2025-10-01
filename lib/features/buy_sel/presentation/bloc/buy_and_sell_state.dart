@@ -26,7 +26,6 @@ class BuyAnSellfailiureState extends BuyAndSellState {
   // TODO: implement props
   List<Object?> get props => [error];
 }
-
 class GetAllCardsSuccessState extends BuyAndSellState {
   GiftCardSuccessResponse response;
   GetAllCardsSuccessState(this.response);
@@ -44,6 +43,18 @@ class GetAllCryptoSuccessState extends BuyAndSellState {
 class SellCardsSuccessState extends BuyAndSellState {
 
   SellCardsSuccessState();
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+class BuyCryptoSuccessState extends BuyAndSellState {
+  BuyCryptoSuccessState();
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+class SellCryptoSuccessState extends BuyAndSellState {
+  SellCryptoSuccessState();
   @override
   // TODO: implement props
   List<Object?> get props => [];

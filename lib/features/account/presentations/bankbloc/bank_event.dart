@@ -9,4 +9,9 @@ class GetBankAccontEvent  extends BankEvent {
   // TODO: implement props
   List<Object?> get props => [];
 
+}class GetCompanyAccontEvent  extends BankEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+
 }

@@ -11,7 +11,8 @@ import '../../../../common/widgets/outlined_form_field.dart';
 class BuyCoin extends StatefulWidget {
   final String name;
   final String rate;
-  const BuyCoin({super.key, required this.name, required this.rate});
+  final String assetId;
+  const BuyCoin({super.key, required this.name, required this.rate, required this.assetId});
 
   @override
   State<BuyCoin> createState() => _BuyCoinState();
@@ -28,6 +29,7 @@ class _BuyCoinState extends State<BuyCoin> {
       setState(() {});
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final amount= ((double.tryParse(numberController.text.trim()) ?? 0) *
@@ -128,7 +130,7 @@ class _BuyCoinState extends State<BuyCoin> {
             ),
             CustomButton(child: TextView(text: "Continue Payment",color: Colors.white,fontWeight: FontWeight.w600,), onPressed: (){
 
-              Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>ProceedCrypto(amount: amount, wallet: addressController.text.trim(), crrency: widget.name,)));
+              Navigator.push(context, CupertinoPageRoute(builder: (ctx)=>ProceedCrypto(amount: amount, wallet: addressController.text.trim(), crrency: widget.name, usdAmount: numberController.text.trim(), assetId: widget.assetId.toString(), paymentProof: '',)));
             }),
             100.verticalSpace
           ],

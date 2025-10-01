@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../theme/pallets.dart';
+import 'app_colors.dart';
 
 class AppTheme extends ChangeNotifier {
   ThemeData get selectedTheme => _selectedTheme;
@@ -19,7 +20,8 @@ class AppTheme extends ChangeNotifier {
     brightness: Brightness.light,
     primaryColor: Pallets.primary,
     hintColor: Pallets.grey,
-    scaffoldBackgroundColor: Colors.white,
+    cardColor: Colors.white.withOpacity(0.5),
+    scaffoldBackgroundColor: Color(0xff101828),
     fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
     sliderTheme: const SliderThemeData(
       showValueIndicator: ShowValueIndicator.always,
@@ -73,6 +75,14 @@ class AppTheme extends ChangeNotifier {
       ),
     ),
     colorScheme: ColorScheme(
+
+
+  //       const backgroundColordark = Color(0xff0f172a);
+  //       const backgroundColorlight = Color(0xffffffff);
+  //     const primarycolor = Color(0xfff18b01);
+  // const dashboardcolor =Colors.blue;
+  // const cardcolor =Color(0xff1e2939);
+  // const btncolor = Pallets.orange;
       background: Colors.white,
       brightness: Brightness.light,
       primary: Pallets.primary,
@@ -82,7 +92,7 @@ class AppTheme extends ChangeNotifier {
       onError: Colors.white,
       onPrimary: Colors.white,
       onSecondary: Colors.black,
-      onSurface: Colors.black,
+      onSurface: backgroundColorlight,
       surface: Colors.grey[200]!,
     ),
   );
@@ -91,7 +101,8 @@ class AppTheme extends ChangeNotifier {
     brightness: Brightness.dark,
     primaryColor: Pallets.primary,
     hintColor: Colors.lightBlueAccent,
-    scaffoldBackgroundColor: Colors.grey[850],
+    cardColor: cardcolor,
+    scaffoldBackgroundColor:Color(0xff101828),
     appBarTheme: const AppBarTheme(
       color: Pallets.white,
       iconTheme: IconThemeData(color: Colors.black),
@@ -106,8 +117,18 @@ class AppTheme extends ChangeNotifier {
       textTheme: ButtonTextTheme.primary,
     ),
     inputDecorationTheme: lightTheme.inputDecorationTheme,
-    colorScheme: lightTheme.colorScheme.copyWith(
-      background: Colors.grey[900],
+    colorScheme: ColorScheme(
+      background: Colors.white,
+      brightness: Brightness.light,
+      primary: Pallets.primary,
+      secondary: Colors.blueAccent,
+      error: Colors.red,
+      onBackground: Colors.black,
+      onError: Colors.white,
+      onPrimary: Colors.white,
+      onSecondary: Colors.black,
+      onSurface: backgroundColordark,
+      surface: Colors.grey[200]!,
     ),
   );
 }

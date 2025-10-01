@@ -48,6 +48,7 @@ class AppConfig {
     await initCore();
     await setup();
     runApp(const Vico());
+
     // FlutterNativeSplash.remove();
   }
 

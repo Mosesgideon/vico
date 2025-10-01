@@ -22,3 +22,16 @@ class SellCardsEvent extends BuyAndSellEvent {
   // TODO: implement props
   List<Object?> get props =>[];
 }
+class BuyCryptoEvent extends BuyAndSellEvent {
+  BuyCryptoPayload payload;
+  BuyCryptoEvent(this.payload);
+  @override
+  // TODO: implement props
+  List<Object?> get props =>[];
+}class SellCryptoEvent extends BuyAndSellEvent {
+  SellCryptoPayload payload;
+  SellCryptoEvent(this.payload);
+  @override
+  // TODO: implement props
+  List<Object?> get props =>[];
+}

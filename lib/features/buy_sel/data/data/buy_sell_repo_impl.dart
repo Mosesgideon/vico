@@ -1,8 +1,10 @@
 import 'package:vico/core/services/network/network_service.dart';
 import 'package:vico/core/services/network/url_config.dart';
+import 'package:vico/features/buy_sel/data/models/by_crypto_payload.dart';
 import 'package:vico/features/buy_sel/data/models/crypto_response.dart';
 import 'package:vico/features/buy_sel/data/models/get_all_cards.dart';
 import 'package:vico/features/buy_sel/data/models/sell_card_payload.dart';
+import 'package:vico/features/buy_sel/data/models/sell_coin_payload.dart';
 
 import '../../domain/buy_sell_repo.dart';
 
@@ -32,5 +34,17 @@ class BuyAndSellRepositoryImpl extends BuyAndSellRepository {
   Future<GetAllCryptoResponse> getCrypto() async {
   var resp=await networkService.call(UrlConfig.getcrypto, RequestMethod.get);
     return GetAllCryptoResponse.fromJson(resp.data);
+  }
+
+  @override
+  Future<void> buyCrypto(BuyCryptoPayload payload) async {
+   var response=await networkService.call(UrlConfig.alltransactions, RequestMethod.post,data: payload.toJson());
+   return response.data;
+  }
+
+  @override
+  Future<void> sellCrypto(SellCryptoPayload payload) async {
+    var response=await networkService.call(UrlConfig.alltransactions, RequestMethod.post,data: payload.toJson());
+    return response.data;
   }
 }

@@ -20,6 +20,13 @@ class BankAccountSuccessState extends BankState {
   // TODO: implement props
   List<Object?> get props => [];
 }
+class CompanyAccountSuccessState extends BankState {
+  CompanyAccountResponse response;
+  CompanyAccountSuccessState(this.response);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
 class BankAccountfailiureState extends BankState {
   String error;
   BankAccountfailiureState(this.error);

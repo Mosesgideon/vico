@@ -1,6 +1,7 @@
 import 'package:vico/core/services/network/network_service.dart';
 import 'package:vico/core/services/network/url_config.dart';
 import 'package:vico/features/account/data/models/account_response.dart';
+import 'package:vico/features/account/data/models/company_accont.dart';
 import 'package:vico/features/account/domain/repo/profile_repo.dart';
 
 import '../models/edit_pro_response.dart';
@@ -46,5 +47,14 @@ class ProfileRepositoryImpl extends ProfileRepository {
       RequestMethod.get,
     );
     return GetUserAccontResponse.fromJson(response.data);
+  }
+
+  @override
+  Future<CompanyAccountResponse> companyAccount() async {
+    var response = await networkService.call(
+      UrlConfig.companyAccount,
+      RequestMethod.get,
+    );
+    return CompanyAccountResponse.fromJson(response.data);
   }
 }

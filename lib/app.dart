@@ -24,14 +24,15 @@ class Vico extends StatelessWidget {
         designSize: const Size(393, 852),
         useInheritedMediaQuery: true,
         minTextAdapt: true,
+
         builder: (contextAlt, child) {
           return OverlaySupport.global(
             child: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: MaterialApp.router(
-                // theme: ThemeData(),
-                // theme: AppTheme.lightTheme,
-                // darkTheme:AppTheme.darkTheme,
+                theme: AppTheme.lightTheme,
+                darkTheme:AppTheme.darkTheme,
+
                 debugShowCheckedModeBanner: false,
                 title: "vico",
                 //TODO: SET LOCALE HERE

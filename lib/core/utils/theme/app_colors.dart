@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/pallets.dart';
+
 const secondaryColor = Color(0xFF0E0B0A);
 const Color appPrimaryColor = Color(0xff324ce1);
 Color lightBackgroundColor = Colors.white;
@@ -23,6 +25,16 @@ const Color black = Colors.black;
 const red = Color(0xFFff0000);
 const Color gold = Color(0xFFcfa23c);
 const textColor = Color(0xFF5f6368);
+
+
+
+//appmaincolors
+const backgroundColordark = Color(0xff0f172a);
+const backgroundColorlight = Color(0xffffffff);
+const primarycolor = Color(0xfff18b01);
+const dashboardcolor =Colors.blue;
+const cardcolor =Color(0xff1e2939);
+const btncolor = Pallets.orange;
 
 extension ColorSchemeEx on ColorScheme {
   Color get backgroundColor => brightness == Brightness.dark

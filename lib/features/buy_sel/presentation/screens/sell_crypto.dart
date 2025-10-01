@@ -98,12 +98,12 @@ class _BuySellCryptoState extends State<BuySellCrypto> {
                             if(widget.text=="Sell Crypto"){
                               Navigator.push(
                                 context,
-                                CupertinoPageRoute(builder: (ctx) => SellCoin(name: resp![index].coinName??'', rate: resp![index].coinRate.toString()??'',)),
+                                CupertinoPageRoute(builder: (ctx) => SellCoin(name: resp![index].coinName??'', rate: resp![index].coinRate.toString()??'', assetId: resp![index].id.toString(),)),
                               );
                             }else{
                               Navigator.push(
                                 context,
-                                CupertinoPageRoute(builder: (ctx) => BuyCoin(name:  resp![index].coinName??'', rate: resp![index].coinRate.toString()??'', )),
+                                CupertinoPageRoute(builder: (ctx) => BuyCoin(name:  resp![index].coinName??'', rate: resp![index].coinRate.toString()??'', assetId: resp![index].id.toString(), )),
                               );
                             }
                             // Navigator.push(
@@ -120,7 +120,25 @@ class _BuySellCryptoState extends State<BuySellCrypto> {
                               mainAxisAlignment: MainAxisAlignment.center,
 
                               children: [
-                                ImageWidget(imageUrl: resp![index].coinImage??'',
+                                ImageWidget(
+                                  onTap: () {
+                                    if(widget.text=="Sell Crypto"){
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(builder: (ctx) => SellCoin(name: resp![index].coinName??'', rate: resp![index].coinRate.toString()??'', assetId: resp![index].id.toString(),)),
+                                      );
+                                    }else{
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(builder: (ctx) => BuyCoin(name:  resp![index].coinName??'', rate: resp![index].coinRate.toString()??'', assetId: resp![index].id.toString(), )),
+                                      );
+                                    }
+                                    // Navigator.push(
+                                    //   context,
+                                    //   CupertinoPageRoute(builder: (ctx) => SellScreen()),
+                                    // );
+                                  },
+                                  imageUrl: resp![index].coinImage??'',
                                   borderRadius: BorderRadius.circular(10),height: 60,width: 100,fit: BoxFit.cover,),
                                 4.verticalSpace,
                                 TextView(

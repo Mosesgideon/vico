@@ -104,12 +104,12 @@ class _BuySellState extends State<BuySell> {
                       if(widget.text=="Sell Gift Card"){
                         Navigator.push(
                           context,
-                          CupertinoPageRoute(builder: (ctx) => SellScreen(rate: resp![index].cardRate.toString()??'',)),
+                          CupertinoPageRoute(builder: (ctx) => SellScreen(rate: resp[index].cardRate.toString()??'', assetId: resp[index].id.toString(),)),
                         );
                       }else{
                         Navigator.push(
                           context,
-                          CupertinoPageRoute(builder: (ctx) => BuycardScreen(text:resp![index].cardName??'', rate: resp![index].cardRate.toString()??'' ,)),
+                          CupertinoPageRoute(builder: (ctx) => BuycardScreen(text:resp![index].cardName??'', rate: resp[index].cardRate.toString()??'' ,)),
                         );
                       }
                       // Navigator.push(
@@ -126,7 +126,25 @@ class _BuySellState extends State<BuySell> {
                         mainAxisAlignment: MainAxisAlignment.center,
 
                         children: [
-                         ImageWidget(imageUrl: resp![index].cardLogo??'',
+                         ImageWidget(
+                           onTap: () {
+                             if(widget.text=="Sell Gift Card"){
+                               Navigator.push(
+                                 context,
+                                 CupertinoPageRoute(builder: (ctx) => SellScreen(rate: resp[index].cardRate.toString()??'', assetId: resp[index].id.toString(),)),
+                               );
+                             }else{
+                               Navigator.push(
+                                 context,
+                                 CupertinoPageRoute(builder: (ctx) => BuycardScreen(text:resp![index].cardName??'', rate: resp[index].cardRate.toString()??'' ,)),
+                               );
+                             }
+                             // Navigator.push(
+                             //   context,
+                             //   CupertinoPageRoute(builder: (ctx) => SellScreen()),
+                             // );
+                           },
+                           imageUrl: resp![index].cardLogo??'',
                          borderRadius: BorderRadius.circular(10),height: 60,width: 100,fit: BoxFit.cover,),
                           4.verticalSpace,
                           TextView(

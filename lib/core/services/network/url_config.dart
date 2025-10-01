@@ -75,8 +75,12 @@ class UrlConfig {
   static const String alltransactions =
       'https://test.dayladexpo.com.ng/api/v1/transactions';
 
+
   static const String getbank =
       'https://test.dayladexpo.com.ng/api/v1/bankAccounts';
+
+  static const String companyAccount =
+      'https://test.dayladexpo.com.ng/api/v1/bankAccounts/company';
 
 
 

@@ -23,8 +23,9 @@ import '../../../account/presentations/bankbloc/bank_bloc.dart';
 
 class SellScreen extends StatefulWidget {
   final String rate;
+  final String assetId;
 
-  const SellScreen({super.key, required this.rate});
+  const SellScreen({super.key, required this.rate, required this.assetId});
 
   @override
   State<SellScreen> createState() => _SellScreenState();
@@ -404,13 +405,13 @@ class _SellScreenState extends State<SellScreen> {
       sellbloc.add(
         SellCardsEvent(
           SellCardPayload(
-            assetType: '',
-            assetId: '',
-            transactionType: '',
-            usdAmount: '',
-            cardNum: '',
+            assetType: 'giftcard',
+            assetId: widget.assetId.toString(),
+            transactionType: "sell",
+            usdAmount: usdController.text.toString(),
+            cardNum: numberController.text.toString(),
             receivingAccount: null,
-            cardImage: '',
+            cardImage: myfile?.path,
           ),
         ),
       );
