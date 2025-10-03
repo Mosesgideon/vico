@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:vico/common/widgets/custom_dialogs.dart';
 import 'package:vico/common/widgets/error_widget.dart';
 import 'package:vico/core/navigation/route_url.dart';
@@ -158,7 +159,7 @@ class _BrandnewState extends State<Brandnew> {
                          ],
                        ),
                        CircleAvatar(radius: 25,
-                         child: Icon(Icons.attach_money_outlined),)
+                         child: Icon(Iconsax.buy_crypto),)
 
                      ],
                    ),

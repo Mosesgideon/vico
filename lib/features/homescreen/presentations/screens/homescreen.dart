@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vico/common/widgets/custom_appbar.dart';
+import 'package:vico/common/widgets/image_widget.dart';
 import 'package:vico/common/widgets/text_view.dart';
 import 'package:vico/features/homescreen/presentations/widgets/brandnew.dart';
+
+import '../../../../core/di/injector.dart';
+import '../../../authentication/presentations/user_bloc/user_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,18 +23,19 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
   }
+  final user=injector.get<UserBloc>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff0f172a),
       appBar: CustomAppBar(
         bgColor: Color(0xff0f172a),
-        leading: CircleAvatar(),
+        leading:ImageWidget(imageUrl: user.appUser?.photo??'',size: 70,borderRadius: BorderRadius.circular(35),border: Border.all(color: Color(0xfff18b01),width: 2),),
         tittle: TextView(text: "Vico Exchange",fontSize: 18,color: Colors.white,fontWeight: FontWeight.w600,),
         actions: [
-          Icon(Iconsax.moon),
           10.horizontalSpace,
-          Icon(Iconsax.notification),
+          Icon(Iconsax.notification,color: Colors.grey,),
           10.horizontalSpace,
 
 
